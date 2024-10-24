@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WILD-SLOTH.Api", "WILD-SLOTH.Api\WILD-SLOTH.Api.csproj", "{7CA1933E-93CD-4534-878D-1DE1BCEECBA7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WILD-SLOTH.Domain", "WILD-SLOTH.Domain\WILD-SLOTH.Domain.csproj", "{387FA4E2-8FBD-4C78-93C1-74B09C5E19FA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7CA1933E-93CD-4534-878D-1DE1BCEECBA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CA1933E-93CD-4534-878D-1DE1BCEECBA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CA1933E-93CD-4534-878D-1DE1BCEECBA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CA1933E-93CD-4534-878D-1DE1BCEECBA7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{387FA4E2-8FBD-4C78-93C1-74B09C5E19FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{387FA4E2-8FBD-4C78-93C1-74B09C5E19FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{387FA4E2-8FBD-4C78-93C1-74B09C5E19FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{387FA4E2-8FBD-4C78-93C1-74B09C5E19FA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
