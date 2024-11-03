@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\WILD-SLOTH.Domain\WILD-SLOTH.Domain.csproj" />
+    <ProjectReference Include="..\WILD-SLOTH.Data\WILD-SLOTH.Data.csproj" />
   </ItemGroup>
 
 </Project>
