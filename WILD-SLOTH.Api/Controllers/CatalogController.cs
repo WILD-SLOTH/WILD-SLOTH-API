@@ -1,29 +1,42 @@
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using WILD.SLOTH.Data;
 using WILD.SLOTH.Domain.catalog;
 
 namespace WILD.SLOTH.Api.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("/catalog")]
     public class CatalogController : ControllerBase
     {
+        private readonly StoreContext _db;
+
+        public CatalogController(StoreContext db)
+        {
+            _db = db;
+        }
+
         [HttpGet]
         public IActionResult GetItems()
         {
-            var items = new List<Item>()
+            return Ok(_db.Items);
+            
+          /*  var items = new List<Item>()
             {
                 new Item("Shirt", "Ohio State shirt.", "Nike", 29.99m),
                 new Item("Shorts", "Ohio State shorts.", "Nike", 44.99m)
             };
-            return Ok(items);
+            return Ok(items); */
         }
         [HttpGet("{id:int}")]
-        public IActionResult GetItems(int id)
+        public IActionResult GetItem(int id)
         {
-            var item = new Item("Shirt", "Ohio State shirt.", "Nike", 29.99m);
-            item.Id = id;
-
-            return Ok(item);
+            var item = _db.Items.Find(id);
+            if (item == null)
+            {
+                return NotFound();
+            }
+            return Ok();
         }
         [HttpPost]
         public IActionResult Post(Item item)

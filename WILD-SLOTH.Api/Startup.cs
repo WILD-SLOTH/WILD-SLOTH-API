@@ -1,10 +1,12 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using WILD.SLOTH.Data;
 
-namespace jet.piranha.Api
+namespace WILD.SLOTH.Api
 {
     public class Startup
     {
@@ -20,6 +22,10 @@ namespace jet.piranha.Api
             services.AddControllers();
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
+            services.AddDbContext<StoreContext>(options =>
+                options.UseSqlite("Data Source=../Registrar.sqlite",
+                    b => b.MigrationsAssembly("WILD.SLOTH.Api")));
+            
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -28,7 +34,7 @@ namespace jet.piranha.Api
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "jet.piranha.Api v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WILD.SLOTH.Api v1"));
             }
 
             app.UseHttpsRedirection();
