@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Wild.Sloth.Domain.Orders;
 using WILD.SLOTH.Domain.catalog;
 
 namespace WILD.SLOTH.Data
@@ -10,6 +11,8 @@ namespace WILD.SLOTH.Data
     { }
 
     public DbSet<Item> Items { get; set; }
+
+    public DbSet<Order> Orders { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
