@@ -20,4 +20,5 @@ public class RatingTests
     {
         var rating = new Rating(0, "Mike", "Great fit!");
     }
+    
 }
