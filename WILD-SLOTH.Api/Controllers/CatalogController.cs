@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
@@ -6,6 +7,7 @@ using WILD.SLOTH.Domain.catalog;
 
 namespace WILD.SLOTH.Api.Controllers
 {
+    [EnableCors]
     [ApiController]
     [Route("/catalog")]
     public class CatalogController : ControllerBase
