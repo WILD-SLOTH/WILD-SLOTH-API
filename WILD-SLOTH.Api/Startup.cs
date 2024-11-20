@@ -25,7 +25,15 @@ namespace WILD.SLOTH.Api
             services.AddDbContext<StoreContext>(options =>
                 options.UseSqlite("Data Source=../Registrar.sqlite",
                     b => b.MigrationsAssembly("WILD.SLOTH.Api")));
-            
+            services.AddCors(options =>
+{
+options.AddDefaultPolicy(policyBuilder =>
+{
+policyBuilder.WithOrigins("http://localhost:3000")
+.AllowAnyHeader()
+.AllowAnyMethod();
+});
+});
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -38,6 +46,8 @@ namespace WILD.SLOTH.Api
             }
 
             app.UseHttpsRedirection();
+
+            app.UseCors();
 
             app.UseRouting();
 
