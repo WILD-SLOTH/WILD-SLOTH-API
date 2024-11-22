@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using WILD.SLOTH.Domain.catalog;
 using WILD.SLOTH.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WILD.SLOTH.Api.Controllers
 {
@@ -89,6 +90,7 @@ namespace WILD.SLOTH.Api.Controllers
         }
 
         [HttpDelete("{id:int}")]
+        [Authorize("delete:catalog")]
         public IActionResult Delete(int id)
         {
             // var item = _db.Items.Find(id);

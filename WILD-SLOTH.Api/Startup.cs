@@ -5,6 +5,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using WILD.SLOTH.Data;
+using WILD.SLOTH.Api.Security;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Extensions.Options;
 
 namespace WILD.SLOTH.Api
 {
@@ -19,7 +22,31 @@ namespace WILD.SLOTH.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
+            var builder = WebApplication.CreateBuilder(args);
+
+            String authority = builder.Configuration["Auth0:Authority"] ??
+                throw new ArgumentNullException("Auth0:Authority");
+
+            String audience = builder.Configuration["Auth0:Audience"] ??
+                throw new ArgumentNullException("Auth0:Audience");
+
             services.AddControllers();
+
+            services.AddAuthentication(options =>
+                {
+                    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                })
+                .AddJwtBearer(Options =>
+                {
+                    options.Authority = authority;
+                    Options.Audience = audience;
+                });
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("delete:catalog", policy =>
+                    policy.RequireAuthenticatedUser().RequireClaim("scope", "delete:catalog"));
+            });
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
             services.AddDbContext<StoreContext>(options =>
@@ -48,6 +75,10 @@ policyBuilder.WithOrigins("http://localhost:3000")
             app.UseHttpsRedirection();
 
             app.UseCors();
+            
+            app.UseAuthentication();
+
+            app.UseAuthorization();
 
             app.UseRouting();
 
